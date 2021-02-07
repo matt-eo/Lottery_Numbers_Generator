@@ -1,9 +1,9 @@
 package org.matt;
 
 
+import javafx.application.Platform;
 import javafx.scene.Node;
-import javafx.scene.control.Label;
-import javafx.scene.control.RadioButton;
+import javafx.scene.control.*;
 import javafx.scene.layout.HBox;
 
 import java.util.List;
@@ -14,8 +14,14 @@ public class Controller {
 
     public void generate() {
         HBox elements = (HBox) App.getScene().lookup("#hboxNumbers");
+        Label modeLabel = (Label) App.getScene().lookup("#modeLabel");
 
-        numbersGenerator.setMode("EURO_MILLIONS");
+        if (modeLabel.getText().equals("SET_FOR_LIFE")) {
+            numbersGenerator.setMode("SET_FOR_LIFE");
+        } else {
+            numbersGenerator.setMode("EURO_MILLIONS");
+        }
+
         List<String> numbers = numbersGenerator.getNumbers();
 
         int counter = 0;
@@ -34,9 +40,13 @@ public class Controller {
         Label modeLabel = (Label) App.getScene().lookup("#modeLabel");
 
         if (radioButton.isSelected()) {
-            modeLabel.setText("SET FOR LIFE");
+            modeLabel.setText("SET_FOR_LIFE");
         } else {
             modeLabel.setText("EUROMILLIONS");
         }
+    }
+
+    public void exit() {
+        Platform.exit();
     }
 }

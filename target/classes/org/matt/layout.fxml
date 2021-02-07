@@ -22,12 +22,12 @@
    <top>
       <VBox prefHeight="93.0" prefWidth="918.0" BorderPane.alignment="CENTER">
          <children>
-            <MenuBar prefHeight="23.0" prefWidth="921.0">
+            <MenuBar fx:id="menu" prefHeight="23.0" prefWidth="921.0">
               <menus>
                 <Menu mnemonicParsing="false" text="FILE">
                   <items>
                     <MenuItem mnemonicParsing="false" text="Save" />
-                        <MenuItem mnemonicParsing="false" text="Exit" />
+                        <MenuItem fx:id="exit" mnemonicParsing="false" onAction="#exit" text="Exit" />
                   </items>
                 </Menu>
                   <Menu mnemonicParsing="false" text="MODE">

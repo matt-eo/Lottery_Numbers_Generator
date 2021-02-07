@@ -68,7 +68,7 @@ public class NumbersGenerator {
             values.add(String.valueOf(n));
         }
 
-        //Collections.sort(values);
+        values.add("-");
 
         return values;
 
