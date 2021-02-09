@@ -1,6 +1,7 @@
 package org.matt;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 import java.util.concurrent.ThreadLocalRandom;
 
@@ -40,11 +41,18 @@ public class NumbersGenerator {
     private List<String> generateEuroMillions() {
 
         List<String> values = new ArrayList<>();
+        List<Integer> toSort = new ArrayList<>();
 
         for (int i = 0; i < 5; i++) {
             int n = ThreadLocalRandom.current().nextInt(1, 51);
+            toSort.add(n);
+        }
+
+        Collections.sort(toSort);
+        for (int n : toSort) {
             values.add(String.valueOf(n));
         }
+
         // Generates lucky stars number
         for (int i = 0; i < 2; i++) {
             int n = ThreadLocalRandom.current().nextInt(1, 13);
@@ -57,11 +65,18 @@ public class NumbersGenerator {
     private List<String> generateSetForLife() {
 
         List<String> values = new ArrayList<>();
+        List<Integer> toSort = new ArrayList<>();
 
         for (int i = 0; i < 5; i++) {
             int n = ThreadLocalRandom.current().nextInt(1, 48);
+            toSort.add(n);
+        }
+
+        Collections.sort(toSort);
+        for (int n : toSort) {
             values.add(String.valueOf(n));
         }
+
         // Generates lucky stars number
         for (int i = 0; i < 1; i++) {
             int n = ThreadLocalRandom.current().nextInt(1, 11);

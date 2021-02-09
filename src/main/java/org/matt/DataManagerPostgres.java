@@ -1,3 +1,4 @@
+/*
 package org.matt;
 
 import java.sql.*;
@@ -28,7 +29,9 @@ public class DataManagerPostgres {
         try {
             Statement statement = conn.createStatement();
             statement.executeUpdate("CREATE TABLE IF NOT EXISTS my_played_numbers (" +
-                    /*"id BIGSERIAL PRIMARY KEY," +*/
+                    */
+/*"id BIGSERIAL PRIMARY KEY," +*//*
+
                     "numbers VARCHAR(45) NOT NULL," +
                     "date VARCHAR(45) NOT NULL)");
             statement.close();
@@ -77,3 +80,4 @@ public class DataManagerPostgres {
     }
 
 }
+*/

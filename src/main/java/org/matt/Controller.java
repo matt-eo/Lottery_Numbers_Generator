@@ -2,27 +2,21 @@ package org.matt;
 
 
 import javafx.application.Platform;
-import javafx.event.ActionEvent;
-import javafx.fxml.FXML;
 import javafx.scene.Node;
 import javafx.scene.control.*;
 import javafx.scene.layout.HBox;
-import javafx.stage.FileChooser;
-import javafx.stage.Stage;
-import org.postgresql.util.PSQLException;
 
 import java.io.*;
-import java.sql.SQLException;
 import java.time.LocalDate;
 import java.util.List;
 
 public class Controller {
 
-    private NumbersGenerator numbersGenerator = new NumbersGenerator("EURO_MILLIONS");
-    //private DataManager dataManager = new DataManager();
-    private DataManagerPostgres dataManager = new DataManagerPostgres();
+    private final NumbersGenerator numbersGenerator = new NumbersGenerator("EURO_MILLIONS");
     private String numbersDB;
-    private String dateDB;
+    //private DataManager dataManager = new DataManager();
+    //private DataManagerPostgres dataManager = new DataManagerPostgres();
+    //private String dateDB;
 
     public void generate() {
         HBox elements = (HBox) App.getScene().lookup("#hboxNumbers");
@@ -49,7 +43,7 @@ public class Controller {
 
     public void verifyNumbers() {
         saveNumbersToString();
-        if (dataManager.isPresent(numbersDB)) {
+        if (CheckNumbers.isPresent(numbersDB)) {
             Alert alert = new Alert(Alert.AlertType.INFORMATION);
             alert.setContentText("WARNING: YOU ALREADY PLAYED THIS NUMBERS");
             alert.show();
@@ -87,13 +81,11 @@ public class Controller {
             FileWriter fw = new FileWriter(file, true);
             fw.write(text + "\n");
             fw.close();
-        } catch (FileNotFoundException e) {
-            e.printStackTrace();
         } catch (IOException e) {
             e.printStackTrace();
         }
         // Also saving to database
-        dataManager.insertData(numbersDB, dateDB);
+        //dataManager.insertData(numbersDB, dateDB);
     }
 
     public void saveAsPlayed() {
@@ -114,17 +106,17 @@ public class Controller {
         StringBuilder stringBuilder = new StringBuilder();
         for (Node node : elements.getChildren()) {
             Label label = (Label) node;
-            stringBuilder.append(label.getText() + " ");
+            stringBuilder.append(label.getText()).append(" ");
         }
         numbersDB = stringBuilder.toString();
         LocalDate date = LocalDate.now();
-        dateDB = date.toString();
-        stringBuilder.append(" - " + date);
+        //dateDB = date.toString();
+        stringBuilder.append(" - ").append(date);
         return stringBuilder.toString();
     }
 
     public void exit() {
-        dataManager.closeConnection();
+        //dataManager.closeConnection();
         Platform.exit();
     }
 
